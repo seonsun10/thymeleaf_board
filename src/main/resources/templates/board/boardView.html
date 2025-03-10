@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title" th:text="${board.title}">게시글 제목</h3>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <div>
+                    <span class="text-muted">작성자: </span>
+                    <span th:text="${board.author}">작성자명</span>
+                    <span class="mx-2">|</span>
+                    <span class="text-muted">작성일: </span>
+                </div>
+                <div>
+                    <span class="text-muted">조회수: </span>
+                    <span th:text="${board.viewCount}">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="content-area mb-4" th:utext="${board.content}">
+                게시글 내용
+            </div>
+            
+            <!-- 첨부파일 영역 -->
+            <div th:if="${not #lists.isEmpty(board.files)}" class="mt-4">
+                <h5>첨부파일</h5>
+                <ul class="list-group">
+                    <li th:each="file : ${board.files}" class="list-group-item">
+                        <a th:href="@{/download/{fileId}(fileId=${file.id})}" 
+                           th:text="${file.originalFileName}"
+                           class="text-decoration-none">
+                            파일명
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 버튼 영역 -->
+    <div class="d-flex justify-content-between mt-3">
+        <a href="/board/list" class="btn btn-secondary">목록으로</a>
+        <div th:if="${isAuthor}">
+            <a th:href="@{/board/edit/{id}(id=${board.id})}" class="btn btn-warning">수정</a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                삭제
+            </button>
+        </div>
+    </div>
+
+    <!-- 댓글 영역 -->
+    <div class="mt-5">
+        <h4>댓글</h4>
+        <form th:action="@{/board/{id}/comment(id=${board.id})}" method="post" class="mb-4">
+            <div class="mb-3">
+                <textarea class="form-control" name="content" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">댓글 작성</button>
+        </form>
+
+        <!-- 댓글 목록 -->
+        <div class="comment-list">
+            <div th:each="comment : ${comments}" class="card mb-2">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong th:text="${comment.author}">댓글 작성자</strong>
+                        </div>
+                        <div th:if="${comment.isAuthor}">
+                            <button class="btn btn-sm btn-danger">삭제</button>
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-0" th:text="${comment.content}">댓글 내용</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 삭제 확인 모달 -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">게시글 삭제</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>정말로 이 게시글을 삭제하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <form th:action="@{/board/delete/{id}(id=${board.id})}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">삭제</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html> 
