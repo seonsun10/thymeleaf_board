@@ -1,42 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head thth:fragment="head">
+<head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link ref="stylesheer" href="/css/board.css"/>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom CSS -->
-    <style>
-        .navbar {
-            margin-bottom: 20px;
-        }
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #f8f9fa;
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
     <!-- Navigation -->
     <th:block th:fragment="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="/board/boardMain">게시판</a>
+                <a class="navbar-brand" href="/board/boardMainPage.do">게시판</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/board/boardList">게시글 목록</a>
+                            <a class="nav-link" href="/board/boardListPage.do">게시글 목록</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/board/boardReg">글쓰기</a>
+                            <a class="nav-link" href="/board/boardRegPage.do">글쓰기</a>
                         </li>
                     </ul>
                 </div>
@@ -47,10 +39,11 @@
     <!-- Footer -->
     <footer th:fragemt="footer" class="footer">
         <div class="container text-center">
-            <p class="text-muted">© 2024 게시판. All rights reserved.</p>
+            <p class="text-muted">© 2025 Thymeleaf 게시판. All rights reserved.</p>
         </div>
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     </footer>
 
 </html> 

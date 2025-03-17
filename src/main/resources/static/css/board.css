@@ -1,0 +1,31 @@
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}
+
+.board-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.list-group-item:hover {
+    background-color: rgba(0, 0, 0, .01);
+    transition: background-color 0.2s ease;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.badge {
+    font-weight: normal;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
