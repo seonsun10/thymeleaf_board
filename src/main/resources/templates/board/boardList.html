@@ -1,105 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{layout/layout :: head}"/>
-<body>
-    <th:block th:replace="~{layout/layout :: header}"/>
-    <div th:fragment="boardList" class="board-list-container">
-        <!-- 상단 타이틀과 설명 -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="mb-1">게시글 목록</h2>
-                <p class="text-muted">최신 게시글을 확인하세요</p>
-            </div>
-            <div>
-                <a href="/board/boardReg" class="btn btn-primary">
-                    <i class="bi bi-plus-lg"></i> 새 글 작성
+    <ul class="cardList">
+        <li class="PostCard_block" th:each="item : ${boardList}">
+            <a href="javascript:">
+                <div class="imgArea">
+                        <img class="w-xs" alt="[번역] 리액트에서의 단일 책임 원칙: 컴포넌트 집중의 기술 post" src="https://velog.velcdn.com/images/eunbinn/post/f2e10256-b0a3-4b87-821f-b9fd02c854ba/image.webp" />
+                </div>
+            </a>
+            <div class="PostCard_content">
+                <a href="javascript:" class="PostCard_Link">
+                    <h4 class="PostCard_title" th:text="${item.title}">제목</h4>
+                    <div>
+                        <p class="PostCard_Txt" th:text="${item.content}">내용</p>
+                    </div>
                 </a>
-            </div>
-        </div>
-
-        <!-- 검색 폼 -->
-        <div class="card mb-4 border-0 shadow-sm">
-            <div class="card-body">
-                <form class="row g-3" action="/board/boardList" method="get">
-                    <div class="col-md-3">
-                        <select class="form-select" name="searchType">
-                            <option value="title">제목</option>
-                            <option value="content">내용</option>
-                            <option value="author">작성자</option>
-                        </select>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="input-group">
-                            <input class="form-control" type="search" 
-                                   placeholder="검색어를 입력하세요" name="keyword"
-                                   aria-label="검색어">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="bi bi-search"></i> 검색
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- 게시글 목록 -->
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <div class="list-group list-group-flush">
-                    <div class="list-group-item list-group-item-action p-3" 
-                         th:each="board : ${boardList}">
-                        <a th:href="@{/board/view/{id}(id=${board.boardId})}" 
-                           class="text-decoration-none text-dark">
-                            <div class="row align-items-center">
-                                <div class="col-md-8">
-                                    <h5 class="mb-1" th:text="${board.title}">게시글 제목</h5>
-                                    <p class="mb-1 text-muted small">
-                                        <i class="bi bi-person"></i>
-                                        <span th:text="${board.author}">작성자</span>
-                                        <span class="mx-2">•</span>
-                                        <i class="bi bi-calendar3"></i>
-                                        <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}">
-                                            작성일
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="col-md-4 text-end">
-                                    <span class="badge bg-light text-dark">
-                                        <i class="bi bi-eye"></i>
-                                        <span th:text="${board.viewCount}">0</span>
-                                    </span>
-                                    <span class="badge bg-light text-dark ms-2">
-                                        <i class="bi bi-chat"></i>
-                                        <span th:text="${board.commentCount ?: 0}">0</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
+                <div class="PostCard_info">
+                    <span th:text="${item.createdDate}">2025년 3월 9일</span>
+                    <span class="PostCard_separator">·</span>
+                    <span>8개의 댓글</span>
+                </div>
+                <div class="PostCard_footer">
+                    <a class="PostCard_userInfo" href="/@eunbinn/posts">
+                            <img src="https://velog.velcdn.com/images/eunbinn/profile/691257f1-6b27-4a1b-bece-c9e31cbb8ede/image.jpg" style="color: transparent;"/>
+                        <span>by <b th:text="${item.author}"></b> </span>
+                    </a>
+                    <div class="PostCard_likes___lp_I">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="currentColor" d="m18 1-6 4-6-4-6 5v7l12 10 12-10V6z"></path>
+                        </svg>
+                        <b th:text="${item.viewCount}"></b>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 페이지네이션 -->
-        <nav class="mt-4" aria-label="페이지 네비게이션">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="이전">
-                        <i class="bi bi-chevron-left"></i>
-                    </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="다음">
-                        <i class="bi bi-chevron-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <script th:type="'text/javascript'" th:src="@{/js/board.js}"></script>
-</body>
+            <div class="userInfo"></div>
+        </li>
+    </ul>
 </html> 

@@ -3,29 +3,12 @@
     <th:block th:replace="~{layout/layout :: head}"/>
 <body>
     <th:block th:replace="~{layout/layout :: header}"/>
-    <div class="container py-5">
-        <!-- 메인 배너 -->
-        <div class="jumbotron bg-light p-5 rounded mb-4 text-center">
-            <h1 class="display-4">게시판에 오신 것을 환영합니다</h1>
-            <p class="lead">다양한 의견과 정보를 자유롭게 공유해보세요</p>
-            <hr class="my-4">
-            <div class="d-flex justify-content-center gap-2">
-                <a class="btn btn-primary btn-lg" href="/board/boardReg">
-                    <i class="bi bi-pencil-square"></i> 새 글 작성
-                </a>
-                <a class="btn btn-outline-primary btn-lg" href="/board/boardListPage.do">
-                    <i class="bi bi-list-ul"></i> 전체 게시글 보기
-                </a>
-            </div>
-        </div>
-
+    <div class="bg-black text-white px-5">
         <!-- 게시판 목록 -->
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <!-- <th:block th:replace="~{board/boardList :: boardList}"/> -->
-            </div>
-        </div>
+        <div class="board-list-container"></div>
     </div>
     <th:block th:replace="~{layout/layout :: footer}"/>
+
+    <script th:src="@{/js/board.js}"></script>
 </body>
 </html> 

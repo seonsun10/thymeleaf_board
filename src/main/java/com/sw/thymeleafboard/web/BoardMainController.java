@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -34,12 +33,14 @@ public class BoardMainController {
 
 
     @PostMapping("/boards")
-    @ResponseBody
-    public Page<BoardDTO> searchBoardList(@RequestParam Map<String,String> params, Model model) {
+    public String searchBoardList(@RequestParam Map<String,String> params, Model model) {
         int page = StringUtil.isNullOrEmpty(params.get("page")) ? 0 : Integer.parseInt(params.get("page"));
         int size = StringUtil.isNullOrEmpty(params.get("size")) ? 10 : Integer.parseInt(params.get("size"));
         Page<BoardDTO> boardList = boardService.getBoardList(page,size);
-        return boardList;
+
+        model.addAttribute("boardList", boardList);
+
+        return "/board/boardList";
     }
 
 

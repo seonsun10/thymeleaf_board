@@ -1,3 +1,18 @@
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+main {
+    width: 100%;
+}
+
+svg {
+    width: 10px;
+}
 
 .navbar {
     margin-bottom: 20px;
@@ -10,9 +25,9 @@
 }
 
 .board-list-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .list-group-item:hover {
@@ -28,4 +43,144 @@
     font-weight: normal;
     padding: 8px 12px;
     border-radius: 20px;
+}
+
+/* 리스트 카드형식 */
+.board-list-container div {
+    border: 1px solid red;
+}
+
+div.cardBox {
+    width: 100px;
+}
+
+.cardList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 한줄에 5개 */
+    gap:16px;
+    list-style: none;
+    padding: 0;
+}
+@media screen and (max-width: 1919px) {
+    .cardList {
+        grid-template-columns: repeat(4, 1fr); /* 한줄에 4개 */
+    }
+}
+@media screen and (max-width: 1440px) {
+    .cardList {
+        grid-template-columns: repeat(3, 1fr); /* 한줄에 4개 */
+    }
+}
+
+@media screen and (max-width: 1056px) {
+    .cardList {
+        grid-template-columns: repeat(2, 1fr); /* 한줄에 4개 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cardList {
+        grid-template-columns: repeat(1, 1fr); /* 한줄에 4개 */
+    }
+}
+
+.PostCard_block{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    background-color: #121212;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,04);
+    transition: box-shadow .25s ease-in, transform .25s ease-in;
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 20px 0 rgba(0,0,0,.08);
+        @media screen and (max-width: 1024px) {
+            transform:none
+        }
+    }
+}
+
+.PostCard_content{
+    padding: 1rem;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    color: #f4f4f4;
+    & p{
+        word-break: break-word;
+        overflow-wrap: break-word;
+        font-size: .875rem;
+        line-height: 1.5;
+    }
+}
+
+.PostCard_title{
+    font-size: 1rem;
+    margin: 0 0 .25rem;
+    line-height: 1.5;
+    word-break: break-word;
+    color: #f4f4f4;
+}
+.PostCard_Link{
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+.PostCard_Txt{
+    height: 3.9375rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.imgArea img{
+    width: 100%;
+}
+
+/* 이미지 */
+
+/*.PostCard_userInfo img {*/
+/*    width: 15px;*/
+/*    border-radius: 3px;*/
+/*}*/
+
+.PostCard_info{
+    padding-bottom: .625rem;
+    color: #acacac;
+}
+
+.PostCard_footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #2a2a2a;
+    padding-top: .625rem;
+    font-size: .75rem;
+    line-height: 1.5;
+    .PostCard_userInfo {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        & img {
+            object-fit: cover;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: block;
+            margin-right: .5rem;
+        }
+    };
+    .PostCard_likes___lp_I {
+        display: flex;
+        align-items: center;
+        color: #ececec;
+        & svg {
+            width: .75rem;
+            height: .75rem;
+            margin-right: .5rem;
+        }
+    }
 }

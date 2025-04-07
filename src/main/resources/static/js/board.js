@@ -5,7 +5,6 @@ const app = window.app || {
 
 
 $(()=>{
-    console.log(123);
     fn_bindEvent();
     app.Elmt.init();
     app.Act.init();
@@ -25,8 +24,9 @@ app.Act = (() => {
                 {
                     url: '/boards',
                     type: 'post',
-                    success: function (data) {
-                        console.log(data);
+                    dataType:'text',
+                    success: function (fragment) {
+                        $("div.board-list-container").replaceWith(fragment);
                     },
                 },
             )
