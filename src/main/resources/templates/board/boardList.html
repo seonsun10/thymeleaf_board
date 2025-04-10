@@ -19,17 +19,17 @@
                     <span class="PostCard_separator">·</span>
                     <span>8개의 댓글</span>
                 </div>
-                <div class="PostCard_footer">
-                    <a class="PostCard_userInfo" href="/@eunbinn/posts">
-                            <img src="https://velog.velcdn.com/images/eunbinn/profile/691257f1-6b27-4a1b-bece-c9e31cbb8ede/image.jpg" style="color: transparent;"/>
-                        <span>by <b th:text="${item.author}"></b> </span>
-                    </a>
-                    <div class="PostCard_likes___lp_I">
-                        <svg viewBox="0 0 24 24">
-                            <path fill="currentColor" d="m18 1-6 4-6-4-6 5v7l12 10 12-10V6z"></path>
-                        </svg>
-                        <b th:text="${item.viewCount}"></b>
-                    </div>
+            </div>
+            <div class="PostCard_footer">
+                <a class="PostCard_userInfo" href="/@eunbinn/posts">
+                        <img src="https://velog.velcdn.com/images/eunbinn/profile/691257f1-6b27-4a1b-bece-c9e31cbb8ede/image.jpg" style="color: transparent;"/>
+                    <span>by <b th:text="${item.author}"></b> </span>
+                </a>
+                <div class="PostCard_likes___lp_I">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m18 1-6 4-6-4-6 5v7l12 10 12-10V6z"></path>
+                    </svg>
+                    <b th:text="${item.viewCount}"></b>
                 </div>
             </div>
             <div class="userInfo"></div>

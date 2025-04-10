@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="~{layout/layout :: head}"/>
 <body>
-    <th:block th:replace="~{layout/layout :: header}"/>
-    <div class="bg-black text-white px-5">
-        <!-- 게시판 목록 -->
-        <div class="board-list-container"></div>
+    <div class="board_container">
+        <th:block th:replace="~{layout/layout :: header}"/>
+        <div class="bg-black text-white px-5">
+            <!-- 게시판 목록 -->
+            <div class="board-list-container"></div>
+        </div>
     </div>
     <th:block th:replace="~{layout/layout :: footer}"/>
-
     <script th:src="@{/js/board.js}"></script>
 </body>
 </html> 
